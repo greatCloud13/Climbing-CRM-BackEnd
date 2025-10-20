@@ -1,0 +1,29 @@
+# application-dev.yml (개발환경)
+spring:
+  #MySql 데이터베이스 설정
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/climbing_crm?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: climbing_crm_dev_user
+    password: p@ss
+
+  # JPA/Hibernate 설정
+  jpa:
+    hibernate:
+      ddl-auto: update  # 개발: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # 로깅 설정
+  logging:
+    level:
+      com.example: DEBUG
+      com.example.webapp: TRACE
+      org.springframework.security: DEBUG
+      org.springframework.web: DEBUG
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
