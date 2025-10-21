@@ -5,5 +5,11 @@ spring:
   application:
     name: ClimbingCRM
 
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: Asia/Seoul
+
   profiles:
     active: dev
+
