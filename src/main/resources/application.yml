@@ -5,11 +5,30 @@ spring:
   application:
     name: ClimbingCRM
 
-  jackson:
-    serialization:
-      write-dates-as-timestamps: false
-    time-zone: Asia/Seoul
-
   profiles:
     active: dev
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/climbing_crm?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: climbing_crm_dev_user
+    password: p@ss
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    com.climbingCRM.climbingcrm: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+
+jwt:
+  # TODO: [PRODUCTION] 환경변수로 변경 필요
+  secret: your-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm
+  expiration: 3600000  # 1시간
