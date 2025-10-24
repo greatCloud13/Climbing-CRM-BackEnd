@@ -32,3 +32,14 @@ jwt:
   # TODO: [PRODUCTION] 환경변수로 변경 필요
   secret: your-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm
   expiration: 3600000  # 1시간
+  
+springdoc:
+  api-docs:
+    path: /api-docs                    # OpenAPI JSON 경로
+  swagger-ui:
+    path: /swagger-ui.html             # Swagger UI 경로
+    tags-sorter: alpha                 # 태그 알바벳 순 정렬
+    operations-sorter: alpha           # API 알파벳순 정렬
+    disable-swagger-default-url: true
+    display-request-duration: true     # 요청 시간 표시
+  show-actuator: false                 # Actuator 엔드포인트 숨김

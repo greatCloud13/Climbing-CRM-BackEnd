@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * JWT 토큰 생성 및 검증 유틸리티
@@ -36,9 +38,12 @@ public class JwtTokenProvider {
     public String generateToken(String username){
         Date now = new Date();
         Date expiryDate = new Date(now.getTime()+expirationTime);
+        Map<String, Object> claims = new HashMap<>();
+
 
         return Jwts.builder()
                 .subject(username)      // Payload: sub (토큰 주체)
+                .claims(claims)
                 .issuedAt(now)          // Payload: iat (발급 시간)
                 .expiration(expiryDate) // Payload: exp (만료 시간)
                 .signWith(secretKey)    // Signature: 서명
