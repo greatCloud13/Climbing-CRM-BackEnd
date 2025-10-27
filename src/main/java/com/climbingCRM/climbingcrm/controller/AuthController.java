@@ -1,18 +1,12 @@
 package com.climbingCRM.climbingcrm.controller;
 
-import com.climbingCRM.climbingcrm.dto.auth.AuthResponse;
-import com.climbingCRM.climbingcrm.dto.auth.LoginRequest;
-import com.climbingCRM.climbingcrm.dto.auth.LoginResponse;
-import com.climbingCRM.climbingcrm.dto.auth.SignUpRequest;
+import com.climbingCRM.climbingcrm.dto.auth.*;
 import com.climbingCRM.climbingcrm.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 인증 관련 API 엔드포인트
@@ -48,6 +42,18 @@ public class AuthController {
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request){
         LoginResponse response = authService.login(request);
         return ResponseEntity.ok(response);
+    }
+
+    /**
+     * 현재 로그인한 사용자의 정보를 조회
+     *
+     * @return 현재 사용자 상세 정보
+     */
+    @GetMapping("/me")
+    public ResponseEntity<CurrentUserProfile> getCurrentUser(){
+        CurrentUserProfile result = authService.getCurrentUserProfile();
+
+        return ResponseEntity.ok(result);
     }
 
 }

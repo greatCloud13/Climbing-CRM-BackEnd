@@ -2,6 +2,7 @@ package com.climbingCRM.climbingcrm.common.context;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
  */
 @Builder
 @AllArgsConstructor
+@Data
 public class UserContext {
 
     private Long id;
@@ -16,6 +18,6 @@ public class UserContext {
     private String phone;
 
     //TODO: 지점 관리 개발 완료시 이용
-    private Long regionId;
+    private Long branchCenterId;
 
 }

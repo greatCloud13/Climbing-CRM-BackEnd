@@ -1,6 +1,7 @@
 package com.climbingCRM.climbingcrm.entity.user;
 
 import com.climbingCRM.climbingcrm.entity.BaseEntity;
+import com.climbingCRM.climbingcrm.entity.BranchCenter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,11 +26,19 @@ public class User extends BaseEntity {
     @Column(unique = true, nullable = false, length = 50)
     private String username;
 
+    @Column(nullable = false, length = 10)
+    private String name;
+
     @Column(nullable = false)
     private String password;
 
     @Column(unique = true, nullable = false, length = 100)
     private String email;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch_center_id", nullable = false)
+    private BranchCenter branchCenter;
+
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
